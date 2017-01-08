@@ -14,8 +14,7 @@
 				
 					$scope.items = [];
 										
-					//var ids = [556, 555, 557, 554, 4696, 4699, 4695, 4698, 4697, 4694, 558, 559, 564, 562, 561, 563, 560, 9075, 565, 566];
-					var ids = [556];
+					var ids = [556, 555, 557, 554, 4696, 4699, 4695, 4698, 4697, 4694, 558, 559, 564, 562, 561, 563, 560, 9075, 565, 566];
 
 					for ( var i in ids ) {
 						retData(ids[i]);
@@ -24,7 +23,7 @@
 						return "OK";
 					}
 					function retData (theID){
-						$http.get("http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + theID)
+						$http.get("https://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + theID)
 							.then(
 								function(result){
 									result.data.item.qty = 0;
