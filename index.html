@@ -1,0 +1,80 @@
+<HTML>
+	<HEAD>
+		<TITLE>RuneScape Vis Wax Calculator</TITLE>
+		
+		<!-- Components -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+		<SCRIPT>
+			var vwApp = angular.module("vwApp", []);
+			
+			vwApp.controller('vwCtrl', 
+				function($scope,$http){
+				
+					$scope.items = [];
+										
+					//var ids = [556, 555, 557, 554, 4696, 4699, 4695, 4698, 4697, 4694, 558, 559, 564, 562, 561, 563, 560, 9075, 565, 566];
+					var ids = [556];
+
+					for ( var i in ids ) {
+						retData(ids[i]);
+					}
+					function testxxx (theID) {
+						return "OK";
+					}
+					function retData (theID){
+						$http.get("http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + theID)
+							.then(
+								function(result){
+									result.data.item.qty = 0;
+									$scope.items.push(result.data.item);
+								}
+							);
+					}
+					
+					
+					$scope.total = function() {
+						var total = 0;
+						angular.forEach($scope.items, function(item) {
+							total += item.qty * item.current.price;
+						})
+
+						return total;
+					}
+
+
+					
+				}
+			);
+		</SCRIPT>
+		
+	</HEAD>
+	<BODY>
+		<H1>RuneScape Vis Wax Calculator</H1>
+		<DIV ng-app="vwApp" ng-controller="vwCtrl">
+			
+			<TABLE>
+				<TR>
+					<TD>Name</TD>
+					<TD>Price</TD>
+					<TD>Qty</TD>
+					<TD>Total</TD>
+				</TR>
+				<TR ng-repeat="i in items">
+					<TD>{{i.name}}</TD>
+					<TD>{{i.current.price}}</TD>
+					<TD><INPUT TYPE="number" ng-model="i.qty" min=0></TD>
+					<TD>{{i.current.price * i.qty}}</TD>
+				</TR>
+				<TR>
+					<TD>Total</TD>
+					<TD></TD>
+					<TD></TD>
+					<TD>{{total()}}</TD>															
+				</TR>
+			</TABLE>
+			
+		</DIV>
+	</BODY>
+</HTML>
