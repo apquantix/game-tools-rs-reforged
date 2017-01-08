@@ -7,8 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 
 		<SCRIPT>
-			var vwApp = angular.module("vwApp", []);
-			
+			var vwApp = angular.module("vwApp", [])
+
+			.config(['$httpProvider', function($httpProvider) {
+        		delete $httpProvider.defaults.headers.common["X-Requested-With"]
+    		}]);
+
 			vwApp.controller('vwCtrl', 
 				function($scope,$http){
 				
