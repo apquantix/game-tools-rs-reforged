@@ -7,11 +7,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 
 		<SCRIPT>
-			var vwApp = angular.module("vwApp", [])
+			var vwApp = angular.module("vwApp", []);
 
-			.config(['$httpProvider', function($httpProvider) {
-        		delete $httpProvider.defaults.headers.common["X-Requested-With"]
-    		}]);
+			vwApp.config(
+				function($httpProvider){
+					delete $httpProvider.defaults.headers.common['X-Requested-With'];
+				}
+			);
 
 			vwApp.controller('vwCtrl', 
 				function($scope,$http){
@@ -23,9 +25,7 @@
 					for ( var i in ids ) {
 						retData(ids[i]);
 					}
-					function testxxx (theID) {
-						return "OK";
-					}
+
 					function retData (theID){
 						$http.get("https://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + theID)
 							.then(
