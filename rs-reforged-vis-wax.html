@@ -68,19 +68,20 @@
 		<H1>RuneScape Vis Wax Calculator</H1>
 		
 		<div>Please wait while we retrieve real time data from Grand Exchange</div>
+		<BR>
 		<DIV ng-app="vwApp" ng-controller="vwCtrl">
 			
 			<TABLE>
 				<TR>
-					<TD WIDTH="100">Name</TD>
-					<TD WIDTH="100">Price</TD>
-					<TD WIDTH="100">Qty</TD>
-					<TD WIDTH="100">Total</TD>
+					<TD WIDTH="100"><B>Name</B></TD>
+					<TD WIDTH="100"><B>Price</B></TD>
+					<TD WIDTH="100"><B>Qty</B></TD>
+					<TD WIDTH="100"><B>Total</B></TD>
 				</TR>
 				<TR ng-repeat="i in items">
 					<TD>{{i.name}}</TD>
 					<TD>{{i.current.price}} gp</TD>
-					<TD><INPUT TYPE="number" ng-model="i.qty" min=0></TD>
+					<TD><INPUT TYPE="number" ng-model="i.qty" min="0"/></TD>
 					<TD>{{i.current.price * i.qty}} gp</TD>
 				</TR>
 				<TR>
