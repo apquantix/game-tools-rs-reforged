@@ -70,16 +70,16 @@
 			
 			<TABLE>
 				<TR>
-					<TD>Name</TD>
-					<TD>Price</TD>
-					<TD>Qty</TD>
-					<TD>Total</TD>
+					<TD WIDTH="100">Name</TD>
+					<TD WIDTH="100">Price</TD>
+					<TD WIDTH="100">Qty</TD>
+					<TD WIDTH="100">Total</TD>
 				</TR>
 				<TR ng-repeat="i in items">
 					<TD>{{i.name}}</TD>
-					<TD>{{i.current.price}}</TD>
+					<TD>{{i.current.price}} gp</TD>
 					<TD><INPUT TYPE="number" ng-model="i.qty" min=0></TD>
-					<TD>{{i.current.price * i.qty}}</TD>
+					<TD>{{i.current.price * i.qty}} gp</TD>
 				</TR>
 				<TR>
 					<TD>Total</TD>
@@ -89,9 +89,9 @@
 				</TR>
 				<TR>
 					<TD>{{viswax.name}}</TD>
-					<TD>{{viswax.current.price}}</TD>
+					<TD>{{viswax.current.price}} gp</TD>
 					<TD>100</TD>
-					<TD>{{viswax.current.price * 100}}</TD>															
+					<TD>{{viswax.current.price * 100}} gp</TD>															
 				</TR>                    
                     
 			</TABLE>
