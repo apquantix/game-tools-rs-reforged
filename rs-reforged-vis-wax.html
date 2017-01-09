@@ -19,7 +19,9 @@
 				function($scope,$http){
 				
 					$scope.items = [];
-										
+					$scope.viswax = [];
+                
+                    // list of runes ids.
 					var ids = [556, 555, 557, 554, 4696, 4699, 4695, 4698, 4697, 4694, 558, 559, 564, 562, 561, 563, 560, 9075, 565, 566];
 
 					for ( var i in ids ) {
@@ -30,13 +32,22 @@
 						$http.get("http://getCORS.com/http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + theID)
 							.then(
 								function(result){
-									result.data.item.qty = 0;
-									$scope.items.push(result.data.item);
+									//result.data.item.qty = 0;
+									var theData = result.data
+									theData.item.qty = 0
+									$scope.items.push(theData.item);
 								}
 							);
 					}
 					
-					
+                    $http.get("http://getCORS.com/http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + 32092)
+                    .then(
+                        function(result){
+                        	result.data.item.current.price = parseFloat(result.data.item.current.price.replace(',',''));
+                            $scope.viswax = result.data.item;
+                        }
+                    );
+
 					$scope.total = function() {
 						var total = 0;
 						angular.forEach($scope.items, function(item) {
@@ -76,6 +87,13 @@
 					<TD></TD>
 					<TD>{{total()}}</TD>															
 				</TR>
+				<TR>
+					<TD>{{viswax.name}}</TD>
+					<TD>{{viswax.current.price}}</TD>
+					<TD>100</TD>
+					<TD>{{viswax.current.price * 100}}</TD>															
+				</TR>                    
+                    
 			</TABLE>
 			
 		</DIV>
