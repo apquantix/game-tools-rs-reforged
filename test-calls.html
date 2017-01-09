@@ -12,8 +12,11 @@
             vwApp.controller('vwCtrl',
                 function($scope,$http){
                     $scope.message = 'Test Calls From RS API';
-		            $scope.item = []
-                    $http.get("https://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + 556)
+		            $scope.item = [];
+		            
+		            
+		            var xsrf = $.param({item: "556"});
+                    $http.post("http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json", xsrf)
                         .then(
                             function(result){
                                 $scope.item = result.data.item;
@@ -29,7 +32,7 @@
 		<H1>RuneScape Vis Wax Calculator</H1>
 		<DIV ng-app="vwTest" ng-controller="vwCtrl">
 			{{message}}
-            
+            <BR>
             {{item.name}}
 		</DIV>
 	</BODY>
