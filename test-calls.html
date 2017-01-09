@@ -1,0 +1,26 @@
+<HTML>
+	<HEAD>
+		<TITLE>RS Test Calls</TITLE>
+		
+		<!-- Components -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+		<SCRIPT>
+            var vwApp = angular.module('vwTest', []);
+            
+            vwApp.controller('vwCtrl',
+                function($scope,$http){
+                    $scope.message = 'hello';
+                }
+            );
+		</SCRIPT>
+		
+	</HEAD>
+	<BODY>
+		<H1>RuneScape Vis Wax Calculator</H1>
+		<DIV ng-app="vwTest" ng-controller="vwCtrl">
+			{{message}}			
+		</DIV>
+	</BODY>
+</HTML>
