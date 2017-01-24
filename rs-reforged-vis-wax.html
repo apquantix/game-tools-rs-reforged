@@ -64,26 +64,12 @@
 					<TD WIDTH="100"><B>Base Qty</B></TD>
 					<TD WIDTH="100"><B>Total</B></TD>
 				</TR>
-				<TR ng-repeat="rune in rune_data">
+				<TR ng-repeat="rune in rune_data | orderBy: 'shop*vis'">
 					<TD>{{rune.name}}</TD>
 					<TD>{{rune.shop}} gp</TD>
 					<TD>{{rune.vis}}</TD>
 					<TD>{{rune.shop * rune.vis}} gp</TD>
 				</TR>
-				<TR>
-					<TD>Total</TD>
-					<TD></TD>
-					<TD></TD>
-					<TD>{{total()}}</TD>															
-				</TR>
-<!-- 
-				<TR>
-					<TD>{{viswax.name}}</TD>
-					<TD>{{viswax.current.price}} gp</TD>
-					<TD>100</TD>
-					<TD>{{viswax.current.price * 100}} gp</TD>															
-				</TR>                    
- -->
                     
 			</TABLE>
 			
