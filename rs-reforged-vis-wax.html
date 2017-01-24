@@ -27,8 +27,6 @@
 			vwApp.controller('vwCtrl', 
 				function($scope,$http){                                	
                 	
-                	// used to toggle ge data for local viewing
-                	var local = 0;
                 	
                 	$scope.rune_data = [
 						{rsID: 556, name: "Air rune", vis: 1000, shop: 17, ge: 0},
@@ -64,13 +62,34 @@
 						return total;
 					}
 					
+					
+                	// used to toggle ge data
+                	var ge = 0;
+                	
+                	// ge scope.
+					if (ge){
+						for ( let idx in $scope.rune_data ){
+							curr_ID = $scope.rune_data[idx].rsID;
+							
+							$http.get("http://services.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=" + curr_ID)
+							.then(
+								function(result){
+									//console.log(result.data.item.current.price);
+									$scope.rune_data[idx].ge = parseFloat(result.data.item.current.price);
+								}
+							);
+
+							
+						}
+					}
+					
 				}
 			);
 		</SCRIPT>
 		
 	</HEAD>
 	<BODY>
-		<H1>Vis base price toward rune shop</H1>
+		<H1>Vis Wax Base Rune Prices.</H1>
 		
 		<BR>
 		<DIV ng-app="vwApp" ng-controller="vwCtrl">
@@ -90,7 +109,7 @@
 					<TD>{{rune.ge}} gp</TD>
 					<TD>{{rune.vis}}</TD>
 					<TD>{{rune.shop * rune.vis}} gp</TD>
-					<TD>{{rune.shop * rune.ge}} gp</TD>
+					<TD>{{rune.ge * rune.vis}} gp</TD>
 				</TR>
                     
 			</TABLE>
