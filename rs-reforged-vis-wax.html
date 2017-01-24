@@ -1,6 +1,21 @@
 <HTML>
 	<HEAD>
 		<TITLE>RuneScape Vis Wax Calculator</TITLE>
+		<STYLE>
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}		
+		</STYLE>
+		
 		
 		<!-- Components -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -12,27 +27,30 @@
 			vwApp.controller('vwCtrl', 
 				function($scope,$http){                                	
                 	
+                	// used to toggle ge data for local viewing
+                	var local = 0;
+                	
                 	$scope.rune_data = [
-						{rsID: 556, name: "Air rune", vis: 1000, shop: 17},
-						{rsID: 557, name: "Earth rune", vis: 1000, shop: 17},
-						{rsID: 555, name: "Water rune", vis: 1000, shop: 17},
-						{rsID: 554, name: "Fire rune", vis: 1000, shop: 17},
-						{rsID: 4696, name: "Dust rune", vis: 500, shop: 0},
-						{rsID: 4699, name: "Lava rune", vis: 500, shop: 0},
-						{rsID: 4697, name: "Smoke rune", vis: 500, shop: 0},
-						{rsID: 4694, name: "Steam rune", vis: 500, shop: 0},
-						{rsID: 4695, name: "Mist rune", vis: 500, shop: 0},
-						{rsID: 4698, name: "Mud rune", vis: 300, shop: 0},
-						{rsID: 558, name: "Mind rune", vis: 2000, shop: 17},
-						{rsID: 559, name: "Body rune", vis: 2000, shop: 16},
-						{rsID: 564, name: "Cosmic rune", vis: 400, shop: 0},
-						{rsID: 562, name: "Chaos rune", vis: 500, shop: 140},
-						{rsID: 561, name: "Nature rune", vis: 350, shop: 372},
-						{rsID: 563, name: "Law rune", vis: 300, shop: 378},
-						{rsID: 560, name: "Death rune", vis: 400, shop: 310},
-						{rsID: 9075, name: "Astral rune", vis: 300, shop: 220},
-						{rsID: 565, name: "Blood rune", vis: 350, shop: 550},
-						{rsID: 566, name: "Soul rune", vis: 300, shop: 410}
+						{rsID: 556, name: "Air rune", vis: 1000, shop: 17, ge: 0},
+						{rsID: 557, name: "Earth rune", vis: 1000, shop: 17, ge: 0},
+						{rsID: 555, name: "Water rune", vis: 1000, shop: 17, ge: 0},
+						{rsID: 554, name: "Fire rune", vis: 1000, shop: 17, ge: 0},
+						{rsID: 4696, name: "Dust rune", vis: 500, shop: 0, ge: 0},
+						{rsID: 4699, name: "Lava rune", vis: 500, shop: 0, ge: 0},
+						{rsID: 4697, name: "Smoke rune", vis: 500, shop: 0, ge: 0},
+						{rsID: 4694, name: "Steam rune", vis: 500, shop: 0, ge: 0},
+						{rsID: 4695, name: "Mist rune", vis: 500, shop: 0, ge: 0},
+						{rsID: 4698, name: "Mud rune", vis: 300, shop: 0, ge: 0},
+						{rsID: 558, name: "Mind rune", vis: 2000, shop: 17, ge: 0},
+						{rsID: 559, name: "Body rune", vis: 2000, shop: 16, ge: 0},
+						{rsID: 564, name: "Cosmic rune", vis: 400, shop: 0, ge: 0},
+						{rsID: 562, name: "Chaos rune", vis: 500, shop: 140, ge: 0},
+						{rsID: 561, name: "Nature rune", vis: 350, shop: 372, ge: 0},
+						{rsID: 563, name: "Law rune", vis: 300, shop: 378, ge: 0},
+						{rsID: 560, name: "Death rune", vis: 400, shop: 310, ge: 0},
+						{rsID: 9075, name: "Astral rune", vis: 300, shop: 220, ge: 0},
+						{rsID: 565, name: "Blood rune", vis: 350, shop: 550, ge: 0},
+						{rsID: 566, name: "Soul rune", vis: 300, shop: 410, ge: 0}
                 	];
                 	
                 	// vis wax rsID = 32092
@@ -57,23 +75,28 @@
 		<BR>
 		<DIV ng-app="vwApp" ng-controller="vwCtrl">
 			
-			<TABLE>
+			<TABLE id="table">
 				<TR>
-					<TD WIDTH="100"><B>Name</B></TD>
-					<TD WIDTH="100"><B>Price</B></TD>
-					<TD WIDTH="100"><B>Base Qty</B></TD>
-					<TD WIDTH="100"><B>Total</B></TD>
+					<TH WIDTH="100"><B>Name</B></TH>
+					<TH WIDTH="100"><B>Shop Price</B></TH>
+					<TH WIDTH="100"><B>G.E. Price</B></TH>
+					<TH WIDTH="100"><B>Base Qty</B></TH>
+					<TH WIDTH="100"><B>Shop Total</B></TH>
+					<TH WIDTH="100"><B>G.E. Total</B></TH>
 				</TR>
-				<TR ng-repeat="rune in rune_data | orderBy: 'shop*vis'">
+				<TR ng-repeat="rune in rune_data">
 					<TD>{{rune.name}}</TD>
 					<TD>{{rune.shop}} gp</TD>
+					<TD>{{rune.ge}} gp</TD>
 					<TD>{{rune.vis}}</TD>
 					<TD>{{rune.shop * rune.vis}} gp</TD>
+					<TD>{{rune.shop * rune.ge}} gp</TD>
 				</TR>
                     
 			</TABLE>
 			
 		</DIV>
+		<BR><BR>
         <HR>
         &copy 2017 The Reforged.
 
