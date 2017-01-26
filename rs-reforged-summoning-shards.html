@@ -1,0 +1,154 @@
+<HTML>
+	<HEAD>
+		<TITLE>Summoning Pouch Shards Table</TITLE>
+		<STYLE>
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}		
+		</STYLE>
+		
+		
+		<!-- Components -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+		<SCRIPT>
+			var vwApp = angular.module("reforgedSummoning", []);
+
+			vwApp.controller('reforgedSummoningCtrl', 
+				function($scope,$http){                                	
+					$scope.pouches = [
+						{id:12037, name:"Abyssal lurker pouch", shards:0},
+						{id:12035, name:"Abyssal parasite pouch", shards:0},
+						{id:12796, name:"Abyssal titan pouch", shards:0},
+						{id:12081, name:"Adamant minotaur pouch", shards:0},
+						{id:12067, name:"Albino rat pouch", shards:0},
+						{id:12057, name:"Arctic bear pouch", shards:0},
+						{id:12123, name:"Barker toad pouch", shards:0},
+						{id:12021, name:"Beaver pouch", shards:0},
+						{id:12061, name:"Bloated leech pouch", shards:0},
+						{id:31410, name:"Blood nihil pouch", shards:0},
+						{id:34137, name:"Brawler demon pouch", shards:0},
+						{id:12073, name:"Bronze minotaur pouch", shards:0},
+						{id:12087, name:"Bull ant pouch", shards:0},
+						{id:12029, name:"Bunyip pouch", shards:0},
+						{id:12091, name:"Compost mound pouch", shards:0},
+						{id:34141, name:"Deacon demon pouch", shards:0},
+						{id:12049, name:"Desert wyrm pouch", shards:0},
+						{id:12043, name:"Dreadfowl pouch", shards:0},
+						{id:12051, name:"Evil turnip pouch", shards:0},
+						{id:34139, name:"Executioner demon pouch", shards:0},
+						{id:12802, name:"Fire titan pouch", shards:0},
+						{id:12782, name:"Forge regent pouch", shards:0},
+						{id:12033, name:"Fruit bat pouch", shards:0},
+						{id:12786, name:"Geyser titan pouch", shards:0},
+						{id:12800, name:"Giant chinchompa pouch", shards:0},
+						{id:12013, name:"Giant ent pouch", shards:0},
+						{id:12009, name:"Granite crab pouch", shards:0},
+						{id:12069, name:"Granite lobster pouch", shards:0},
+						{id:12065, name:"Honey badger pouch", shards:0},
+						{id:12025, name:"Hydra pouch", shards:0},
+						{id:12531, name:"Ibis pouch", shards:0},
+						{id:31416, name:"Ice nihil pouch", shards:0},
+						{id:12806, name:"Ice titan pouch", shards:0},
+						{id:12075, name:"Iron minotaur pouch", shards:0},
+						{id:12822, name:"Iron titan pouch", shards:0},
+						{id:12023, name:"Karam. overlord pouch", shards:0},
+						{id:12788, name:"Lava titan pouch", shards:0},
+						{id:32829, name:"Light creature pouch", shards:0},
+						{id:12071, name:"Macaw pouch", shards:0},
+						{id:12041, name:"Magpie pouch", shards:0},
+						{id:19622, name:"Meerkats pouch", shards:0},
+						{id:12079, name:"Mithril minotaur pouch", shards:0},
+						{id:12804, name:"Moss titan pouch", shards:0},
+						{id:31328, name:"Nightmare muspah pouch", shards:0},
+						{id:12792, name:"Obsidian golem pouch", shards:0},
+						{id:36060, name:"Pack mammoth pouch", shards:0},
+						{id:12093, name:"Pack yak pouch", shards:0},
+						{id:14623, name:"Phoenix pouch", shards:0},
+						{id:12011, name:"Praying mantis pouch", shards:0},
+						{id:12816, name:"Pyrelord pouch", shards:0},
+						{id:12820, name:"Ravenous locust pouch", shards:0},
+						{id:34852, name:"Reborn phoenix pouch", shards:0},
+						{id:12083, name:"Rune minotaur pouch", shards:0},
+						{id:31412, name:"Shadow nihil pouch", shards:0},
+						{id:12085, name:"Smoke devil pouch", shards:0},
+						{id:31414, name:"Smoke nihil pouch", shards:0},
+						{id:12095, name:"Sp. cockatrice pouch", shards:0},
+						{id:12105, name:"Sp. coraxatrice pouch", shards:0},
+						{id:12097, name:"Sp. guthatrice pouch", shards:0},
+						{id:12103, name:"Sp. pengatrice pouch", shards:0},
+						{id:12099, name:"Sp. saratrice pouch", shards:0},
+						{id:12107, name:"Sp. vulatrice pouch", shards:0},
+						{id:12101, name:"Sp. zamatrice pouch", shards:0},
+						{id:12015, name:"Spirit cobra pouch", shards:0},
+						{id:12017, name:"Spirit dagannoth pouch", shards:0},
+						{id:12810, name:"Spirit graahk pouch", shards:0},
+						{id:12027, name:"Spirit jelly pouch", shards:0},
+						{id:12063, name:"Spirit kalphite pouch", shards:0},
+						{id:12812, name:"Spirit kyatt pouch", shards:0},
+						{id:12784, name:"Spirit larupia pouch", shards:0},
+						{id:12778, name:"Spirit mosquito pouch", shards:0},
+						{id:12055, name:"Spirit scorpion pouch", shards:0},
+						{id:12059, name:"Spirit spider pouch", shards:0},
+						{id:12007, name:"Spirit terrorbird pouch", shards:0},
+						{id:12808, name:"Spirit tz-kih pouch", shards:0},
+						{id:12047, name:"Spirit wolf pouch", shards:0},
+						{id:12077, name:"Steel minotaur pouch", shards:0},
+						{id:12790, name:"Steel titan pouch", shards:0},
+						{id:12045, name:"Stranger plant pouch", shards:0},
+						{id:12776, name:"Swamp titan pouch", shards:0},
+						{id:12794, name:"Talon beast pouch", shards:0},
+						{id:12019, name:"Thorny snail pouch", shards:0},
+						{id:12039, name:"Unicorn stallion pouch", shards:0},
+						{id:12053, name:"Vampyre bat pouch", shards:0},
+						{id:12818, name:"Void ravager pouch", shards:0},
+						{id:12814, name:"Void shifter pouch", shards:0},
+						{id:12780, name:"Void spinner pouch", shards:0},
+						{id:12798, name:"Void torcher pouch", shards:0},
+						{id:12031, name:"War tortoise pouch", shards:0},
+						{id:12089, name:"Wolpertinger pouch", shards:0}
+					
+					];					
+                	// used to toggle ge data
+                	var ge = 0;
+                						
+				}
+			);
+		</SCRIPT>
+		
+	</HEAD>
+	<BODY>
+		<H1>Summoning Pouch Shards Price</H1>
+		
+		<BR>
+		<DIV ng-app="reforgedSummoning" ng-controller="reforgedSummoningCtrl">
+			
+			<TABLE id="table">
+				<TR>
+					<TH WIDTH="100"><B>Name</B></TH>
+					<TH WIDTH="100"><B>Shards QTY</B></TH>
+				</TR>
+				<TR ng-repeat="pouch in pouches">
+					<TD>{{pouch.name}}</TD>
+					<TD>{{pouch.shards}}</TD>
+				</TR>
+                    
+			</TABLE>
+			
+		</DIV>
+		<BR><BR>
+        <HR>
+        &copy 2017 The Reforged.
+
+	</BODY>
+</HTML>
