@@ -138,10 +138,20 @@
 				<TR>
 					<TH WIDTH="100"><B>Name</B></TH>
 					<TH WIDTH="100"><B>Shards QTY</B></TH>
+					<TH WIDTH="100"><B>Charm</B></TH>
+					<TH WIDTH="100"><B>Level</B></TH>
+					<TH WIDTH="100"><B>Shard Price</B></TH>
+					<TH WIDTH="100"><B>Swap Price</B></TH>
+					<TH WIDTH="100"><B>Swap Cost</B></TH>
 				</TR>
-				<TR ng-repeat="pouch in pouches">
+				<TR ng-repeat="pouch in pouches | orderBy:'level'">
 					<TD>{{pouch.name}}</TD>
 					<TD>{{pouch.shards}}</TD>
+					<TD>{{pouch.charm}}</TD>
+					<TD>{{pouch.level}}</TD>
+					<TD>{{pouch.shards * 25}} gp</TD>
+					<TD>{{pouch.shards * 25 * 0.7}} gp</TD>
+					<TD>{{pouch.shards * 25 * 0.3}} gp</TD>
 				</TR>
                     
 			</TABLE>
