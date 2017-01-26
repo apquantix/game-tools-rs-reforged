@@ -143,6 +143,8 @@
 					<TH WIDTH="100"><B>Shard Price</B></TH>
 					<TH WIDTH="100"><B>Swap Price</B></TH>
 					<TH WIDTH="100"><B>Swap Cost</B></TH>
+					<TH WIDTH="100"><B>G.E. Price</B></TH>
+					<TH WIDTH="100"><B>G.E. - Swap</B></TH>
 				</TR>
 				<TR ng-repeat="pouch in pouches | orderBy:'level'">
 					<TD>{{pouch.name}}</TD>
@@ -152,6 +154,8 @@
 					<TD>{{pouch.shards * 25 | number:0}} gp</TD>
 					<TD>{{pouch.shards * 25 * 0.7 | number:0}} gp</TD>
 					<TD>{{pouch.shards * 25 * 0.3 | number:0}} gp</TD>
+					<TD>{{pouch.ge || 0}} gp</TD>
+					<TD>{{pouch.ge - (pouch.shards * 25 * 0.7) | number:0}} gp</TD>
 				</TR>
                     
 			</TABLE>
